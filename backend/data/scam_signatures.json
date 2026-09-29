@@ -1,0 +1,33 @@
+{
+  "urgency_keywords": [
+    "immediately",
+    "within 10 minutes",
+    "power disconnected",
+    "account blocked",
+    "last chance",
+    "urgent action required"
+  ],
+  "authority_impersonation": [
+    "electricity board",
+    "police department",
+    "tax department",
+    "bank manager",
+    "customer support executive",
+    "discom officer"
+  ],
+  "deceptive_upi_patterns": [
+    "refund",
+    "prize",
+    "cashback",
+    "winner",
+    "helpdesk",
+    "kyc"
+  ],
+  "dangerous_intent_rules": [
+    {
+      "trigger": "enter_pin_to_receive",
+      "severity": "CRITICAL",
+      "description": "Scammer claims user must enter UPI PIN to receive money. UPI PIN is only needed to SEND money."
+    }
+  ]
+}

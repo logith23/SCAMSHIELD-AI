@@ -1,0 +1,43 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario_electricity_threat",
+      "title": "Urgent Electricity Disconnection Notice",
+      "type": "utility_impersonation",
+      "severity": "CRITICAL",
+      "data": {
+        "message": "Dear Consumer, your electricity bill is unpaid. Power supply will be disconnected tonight at 9:30 PM. Immediately call officer Sharma at 9876543210 or click http://quick-power-bill-pay.xyz/update to verify payment.",
+        "url": "http://quick-power-bill-pay.xyz/update",
+        "upi_id": "discom.verify92@okaxis",
+        "claimed_amount": "₹ 1,450"
+      },
+      "summary": "Impersonates utility provider using extreme time urgency and fear of service cutoff."
+    },
+    {
+      "id": "scenario_lottery_upi_collect",
+      "title": "Lottery / Reward UPI 'Collect' Trap",
+      "type": "collect_request_deception",
+      "severity": "HIGH",
+      "data": {
+        "message": "Congratulations! You have won a cash reward of Rs. 25,000 from KBC Lucky Draw. To receive your prize in your bank, accept the payment request sent to your UPI app and enter your PIN.",
+        "url": "http://reward-claim-kbc2026.online/winner",
+        "upi_id": "prize.disbursement.dept@paytm",
+        "claimed_amount": "₹ 25,000"
+      },
+      "summary": "Classic collect-request deception tricking victim into entering UPI PIN under the belief they will receive money."
+    },
+    {
+      "id": "scenario_legit_merchant",
+      "title": "Legitimate Local Grocery Purchase",
+      "type": "legitimate_transaction",
+      "severity": "SAFE",
+      "data": {
+        "message": "Your bill at Fresh Daily Supermart is Rs 340. Thank you for shopping with us.",
+        "url": "https://freshdailygrocers.com/receipt/4921",
+        "upi_id": "freshdaily.store@okhdfcbank",
+        "claimed_amount": "₹ 340"
+      },
+      "summary": "Normal merchant payment pattern with legitimate verified handle and no coercive cues."
+    }
+  ]
+}

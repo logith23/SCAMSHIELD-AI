@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCAMSHIELD AI | Detect Manipulation Before Money Moves</title>
+  <meta name="description" content="Vector Hacks '26 (VH-S02) - Pre-Payment Scam Intelligence and Intent Manipulation Detector">
+  
+  <!-- Modern Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/animations.css">
+</head>
+<body>
+
+  <!-- ===================================================================
+       Top Header Navigation
+       =================================================================== -->
+  <header class="header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <!-- Cyber Shield Vector Icon (No fake company/bank logos) -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <span class="brand-title">SCAMSHIELD AI</span>
+          <span class="brand-tagline">Detect manipulation before money moves</span>
+        </div>
+      </div>
+
+      <!-- Navigation tabs -->
+      <nav class="nav-links">
+        <button class="nav-item active" data-view="dashboard" id="nav-dashboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Dashboard
+        </button>
+        <button class="nav-item" data-view="analyze" id="nav-analyze">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          Analyze
+        </button>
+        <button class="nav-item" data-view="history" id="nav-history">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3v5h5"/>
+            <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/>
+            <path d="M12 7v5l4 2"/>
+          </svg>
+          History
+        </button>
+      </nav>
+
+      <!-- System Status Indicator (Connected to GET /api/health) -->
+      <div class="header-status">
+        <div class="system-pill" id="system-status-indicator">
+          <span class="pulse-dot"></span>
+          <span id="system-status-text">CONNECTING...</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       Safety & Demo Mode Notice Banner
+       =================================================================== -->
+  <aside class="demo-banner">
+    <div class="demo-banner-content">
+      <div class="demo-badge-wrap">
+        <span class="demo-badge">DEMO MODE</span>
+        <span class="demo-text">
+          <strong class="demo-highlight">No real financial transaction is performed.</strong>
+          This software hackathon prototype uses synthetic signals to detect pre-payment deception.
+        </span>
+      </div>
+      <span class="hackathon-tag">VECTOR HACKS '26 &bull; VH-S02</span>
+    </div>
+  </aside>
+
+  <!-- ===================================================================
+       Main Dashboard Body
+       =================================================================== -->
+  <main class="main-content">
+
+    <!-- KPI Metric Cards Overview -->
+    <section class="metrics-grid">
+      <div class="metric-card danger">
+        <div class="metric-header">
+          <span class="metric-label">High-Risk Interceptions</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--status-danger)" stroke-width="2">
+            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <div class="metric-value">124</div>
+        <div class="metric-subtext">Manipulations blocked before payment</div>
+      </div>
+
+      <div class="metric-card warning">
+        <div class="metric-header">
+          <span class="metric-label">Urgency & Intent Triggers</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--status-warning)" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="metric-value">389</div>
+        <div class="metric-subtext">Panic cues, countdowns & spoofed VPAs</div>
+      </div>
+
+      <div class="metric-card safe">
+        <div class="metric-header">
+          <span class="metric-label">Verified Safe Requests</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--status-safe)" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <div class="metric-value">1,482</div>
+        <div class="metric-subtext">Legitimate merchant payments cleared</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-header">
+          <span class="metric-label">Detection Precision</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <div class="metric-value">98.4%</div>
+        <div class="metric-subtext">Local heuristic & intent pattern rules</div>
+      </div>
+    </section>
+
+    <!-- Workspace Dual-Panel Layout: Analysis on Left, Risk Score/Explanations on Right -->
+    <div class="workspace-grid" id="panel-analyze-workspace">
+      
+      <!-- Left Panel: Main Analysis Input Panel -->
+      <section class="panel">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <div class="panel-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h2 class="panel-title">Multimodal Pre-Payment Inspector</h2>
+          </div>
+          
+          <!-- Quick Load Scenario Dropdown for Hackathon Evaluator -->
+          <div class="scenario-selector">
+            <select id="demo-scenario-select" class="input-field" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; width: auto;">
+              <!-- Populated dynamically by demo_scenarios.js -->
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <!-- Modality Tabs -->
+          <div class="analyzer-tabs">
+            <button class="tab-btn active" data-tab="all">
+              <span>⚡ Full Multi-Signal</span>
+            </button>
+            <button class="tab-btn" data-tab="message">
+              <span>💬 Message / Chat</span>
+            </button>
+            <button class="tab-btn" data-tab="url">
+              <span>🔗 Link / Domain</span>
+            </button>
+            <button class="tab-btn" data-tab="payment">
+              <span>💳 UPI / Payment Request</span>
+            </button>
+          </div>
+
+          <!-- Message / Chat Input Area -->
+          <div class="input-group" id="group-message">
+            <label class="input-label" for="input-message">
+              <span>Suspicious Message, SMS or Chat Content</span>
+              <span class="demo-highlight" style="font-size: 0.75rem;">Natural Language Intent</span>
+            </label>
+            <textarea id="input-message" class="textarea-field" placeholder="Paste incoming SMS, WhatsApp message, or payment request message here (e.g. 'Electricity power disconnected tonight at 9:30 PM...')" rows="3">Dear Consumer, your electricity bill is unpaid. Power will be disconnected tonight at 9:30 PM. Immediately call officer Sharma at 9876543210 or click http://quick-power-bill-pay.xyz/update to verify payment.</textarea>
+          </div>
+
+          <!-- URL Analysis Input -->
+          <div class="input-group" id="group-url">
+            <label class="input-label" for="input-url">
+              <span>Suspicious URL / Embedded Link</span>
+              <span class="demo-highlight" style="font-size: 0.75rem;">Domain Spoofing Check</span>
+            </label>
+            <input type="text" id="input-url" class="input-field" placeholder="e.g. http://quick-power-bill-pay.xyz/update" value="http://quick-power-bill-pay.xyz/update">
+          </div>
+
+          <!-- Payment Request / VPA Metadata Input -->
+          <div class="input-group" id="group-payment">
+            <label class="input-label" for="input-upi">
+              <span>Payment Request / UPI ID / VPA Details</span>
+              <span class="demo-highlight" style="font-size: 0.75rem;">Collect vs Pay Detection</span>
+            </label>
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+              <input type="text" id="input-upi" class="input-field" placeholder="e.g. discom.verify92@okaxis" value="discom.verify92@okaxis">
+              <input type="text" id="input-amount" class="input-field" placeholder="Amount (e.g. ₹ 1,450)" value="₹ 1,450">
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-row">
+            <button class="btn-secondary" id="btn-reset" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+              </svg>
+              Clear Fields
+            </button>
+            <button class="btn-primary" id="btn-run-scan" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <span>Run Pre-Payment Scan</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Risk Status & Explainable Findings Area -->
+      <section class="panel">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <div class="panel-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h2 class="panel-title">Pre-Payment Risk Verdict</h2>
+          </div>
+          <span class="badge badge-danger">EXPLAINABLE</span>
+        </div>
+
+        <div class="panel-body">
+          <!-- Circular Risk Gauge -->
+          <div class="risk-meter-container">
+            <div class="gauge-circle">
+              <!-- SVG Gauge Meter -->
+              <svg width="140" height="140" viewBox="0 0 140 140" style="transform: rotate(-90deg);">
+                <circle cx="70" cy="70" r="58" stroke="rgba(255, 255, 255, 0.08)" stroke-width="10" fill="transparent"/>
+                <circle id="gauge-progress-circle" cx="70" cy="70" r="58" stroke="var(--status-danger)" stroke-width="10" 
+                        fill="transparent" stroke-dasharray="364.4" stroke-dashoffset="43.7" stroke-linecap="round" 
+                        style="transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease;"/>
+              </svg>
+              <div style="position: absolute; display: flex; flex-direction: column; align-items: center;">
+                <span class="gauge-score" id="risk-gauge-score">88</span>
+                <span class="gauge-max">/ 100</span>
+              </div>
+            </div>
+
+            <div id="risk-verdict-label" class="risk-verdict-badge verdict-high">CRITICAL RISK</div>
+            <p id="risk-verdict-desc" class="risk-description">
+              High probability of psychological manipulation and deceptive payment intent detected.
+            </p>
+          </div>
+
+          <!-- "Why is this suspicious?" Signals Section -->
+          <div>
+            <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.75rem;">
+              Why Was This Flagged?
+            </h3>
+            <div class="findings-container" id="findings-container">
+              <div class="finding-card">
+                <div class="finding-icon">⚠️</div>
+                <div>
+                  <div class="finding-title">Artificial Urgency & Fear Coercion</div>
+                  <div class="finding-detail">Threatens immediate power disconnection within hours to panic recipient into skipping verification.</div>
+                </div>
+              </div>
+
+              <div class="finding-card">
+                <div class="finding-icon">🌐</div>
+                <div>
+                  <div class="finding-title">Untrusted Generic TLD (.xyz)</div>
+                  <div class="finding-detail">Domain "quick-power-bill-pay.xyz" is unverified and masquerades as an official government utility.</div>
+                </div>
+              </div>
+
+              <div class="finding-card">
+                <div class="finding-icon">💳</div>
+                <div>
+                  <div class="finding-title">Personal VPA Impersonation</div>
+                  <div class="finding-detail">Handle "discom.verify92@okaxis" routes funds to an individual account, not an authorized utility merchant.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================
+         Recent Scans Panel (Audit History)
+         =================================================================== -->
+    <section class="panel" id="panel-recent-scans">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <div class="panel-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h2 class="panel-title">Simulated Scan History & Interception Log</h2>
+        </div>
+        <span style="font-size: 0.75rem; color: var(--text-dim); font-family: var(--font-mono);">
+          LOCAL DEMO AUDIT
+        </span>
+      </div>
+
+      <div class="scans-table-wrap">
+        <table class="scans-table">
+          <thead>
+            <tr>
+              <th>Scan Timestamp</th>
+              <th>Intercepted Target / Modality</th>
+              <th>Detected Scam Pattern</th>
+              <th>Manipulative Intent</th>
+              <th>Risk Score</th>
+              <th>Recommended Safe Action</th>
+            </tr>
+          </thead>
+          <tbody id="scan-history-body">
+            <tr>
+              <td style="font-family: var(--font-mono); color: var(--text-dim);">Today, 23:18:42</td>
+              <td>SMS + Link: <code style="color: var(--accent-cyan);">quick-power-bill-pay.xyz</code></td>
+              <td>Utility Impersonation</td>
+              <td><span class="badge badge-danger">Severe Urgency / Threat</span></td>
+              <td><span class="badge badge-danger">88 / 100</span></td>
+              <td style="color: var(--text-muted);">Do not click link. Pay exclusively via official electricity board portal.</td>
+            </tr>
+            <tr>
+              <td style="font-family: var(--font-mono); color: var(--text-dim);">Today, 22:54:10</td>
+              <td>UPI Collect: <code style="color: var(--accent-cyan);">prize.disbursement@paytm</code></td>
+              <td>Collect Request Inversion</td>
+              <td><span class="badge badge-danger">PIN Entry to Receive Trap</span></td>
+              <td><span class="badge badge-danger">94 / 100</span></td>
+              <td style="color: var(--text-muted);">Decline UPI request immediately. PIN is NEVER required to receive money.</td>
+            </tr>
+            <tr>
+              <td style="font-family: var(--font-mono); color: var(--text-dim);">Today, 21:05:22</td>
+              <td>Merchant Bill: <code style="color: var(--accent-cyan);">greenmart.billing@okhdfcbank</code></td>
+              <td>Legitimate Purchase</td>
+              <td><span class="badge badge-safe">None (Routine Commerce)</span></td>
+              <td><span class="badge badge-safe">8 / 100</span></td>
+              <td style="color: var(--text-muted);">Safe to proceed. Amount matches merchant itemized receipt.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       Footer
+       =================================================================== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <span>SCAMSHIELD AI &bull; Vector Hacks '26 (Problem VH-S02)</span>
+        <span style="margin: 0 0.5rem;">&bull;</span>
+        <span class="footer-highlight">Explainable Pre-Payment Scam Intelligence</span>
+      </div>
+      <div>
+        <span>Software Prototype &bull; Simulated Non-Banking Data</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/demo_scenarios.js"></script>
+  <script src="/js/charts.js"></script>
+  <script src="/js/analyzers.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
