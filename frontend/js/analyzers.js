@@ -1,6 +1,6 @@
 /**
- * SCAMSHIELD AI - Multimodal Analyzers Controller (Foundation)
- * Manages tab switching and prepares payload structures for the engine.
+ * SCAMSHIELD AI - Multimodal Analyzers Controller
+ * Manages tab filtering and loads test presets without hardcoded scores.
  */
 
 const AnalyzerController = {
@@ -29,7 +29,8 @@ const AnalyzerController = {
 
     selector.addEventListener("change", (e) => {
       const presetId = e.target.value;
-      const found = window.DEMO_PRESETS.find(p => p.id === presetId);
+      if (!presetId) return;
+      const found = (window.DEMO_PRESETS || []).find(p => p.id === presetId);
       if (found) {
         this.loadPreset(found);
       }
@@ -41,41 +42,51 @@ const AnalyzerController = {
     const urlInput = document.getElementById("input-url");
     const upiInput = document.getElementById("input-upi");
     const amountInput = document.getElementById("input-amount");
+    const reasonInput = document.getElementById("input-reason");
 
     if (msgInput) msgInput.value = preset.message || "";
     if (urlInput) urlInput.value = preset.url || "";
     if (upiInput) upiInput.value = preset.upiId || "";
     if (amountInput) amountInput.value = preset.amount || "";
+    if (reasonInput) reasonInput.value = preset.reason || "";
 
-    // Show simulated preview for Step 2
-    if (window.RiskVisualizer) {
-      window.RiskVisualizer.renderGauge(preset.simulatedScore);
+    // Clear any previous error/feedback message
+    const feedbackEl = document.getElementById("scan-feedback-msg");
+    if (feedbackEl) feedbackEl.style.display = "none";
+
+    // Trigger dynamic backend analysis for the loaded preset
+    if (typeof window.executeScan === "function") {
+      window.executeScan();
     }
   },
 
   filterInputs(tab) {
-    // Allows focus on specific modality or multi-factor all-in-one view
     const msgGroup = document.getElementById("group-message");
     const urlGroup = document.getElementById("group-url");
     const paymentGroup = document.getElementById("group-payment");
+    const reasonGroup = document.getElementById("group-reason");
 
     if (tab === "message") {
       if (msgGroup) msgGroup.style.display = "flex";
       if (urlGroup) urlGroup.style.display = "none";
       if (paymentGroup) paymentGroup.style.display = "none";
+      if (reasonGroup) reasonGroup.style.display = "none";
     } else if (tab === "url") {
       if (msgGroup) msgGroup.style.display = "none";
       if (urlGroup) urlGroup.style.display = "flex";
       if (paymentGroup) paymentGroup.style.display = "none";
+      if (reasonGroup) reasonGroup.style.display = "none";
     } else if (tab === "payment") {
       if (msgGroup) msgGroup.style.display = "none";
       if (urlGroup) urlGroup.style.display = "none";
       if (paymentGroup) paymentGroup.style.display = "flex";
+      if (reasonGroup) reasonGroup.style.display = "flex";
     } else {
       // all
       if (msgGroup) msgGroup.style.display = "flex";
       if (urlGroup) urlGroup.style.display = "flex";
       if (paymentGroup) paymentGroup.style.display = "flex";
+      if (reasonGroup) reasonGroup.style.display = "flex";
     }
   }
 };

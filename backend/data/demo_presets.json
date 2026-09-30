@@ -2,42 +2,68 @@
   "scenarios": [
     {
       "id": "scenario_electricity_threat",
-      "title": "Urgent Electricity Disconnection Notice",
-      "type": "utility_impersonation",
-      "severity": "CRITICAL",
+      "title": "⚡ Urgent Electricity Disconnection Notice",
+      "category": "Bank/account impersonation",
       "data": {
         "message": "Dear Consumer, your electricity bill is unpaid. Power supply will be disconnected tonight at 9:30 PM. Immediately call officer Sharma at 9876543210 or click http://quick-power-bill-pay.xyz/update to verify payment.",
         "url": "http://quick-power-bill-pay.xyz/update",
         "upi_id": "discom.verify92@okaxis",
-        "claimed_amount": "₹ 1,450"
+        "amount": "1450",
+        "payment_reason": "Electricity Bill Payment"
       },
       "summary": "Impersonates utility provider using extreme time urgency and fear of service cutoff."
     },
     {
       "id": "scenario_lottery_upi_collect",
-      "title": "Lottery / Reward UPI 'Collect' Trap",
-      "type": "collect_request_deception",
-      "severity": "HIGH",
+      "title": "🎁 Lottery / Reward UPI 'Collect' Trap",
+      "category": "Fake cashback/reward",
       "data": {
-        "message": "Congratulations! You have won a cash reward of Rs. 25,000 from KBC Lucky Draw. To receive your prize in your bank, accept the payment request sent to your UPI app and enter your PIN.",
+        "message": "Congratulations! You have won a cash reward of Rs. 25,000 from KBC Lucky Draw. To receive your prize in your bank, accept the payment collect request in your UPI app and enter your PIN now.",
         "url": "http://reward-claim-kbc2026.online/winner",
         "upi_id": "prize.disbursement.dept@paytm",
-        "claimed_amount": "₹ 25,000"
+        "amount": "25000",
+        "payment_reason": "Prize Claim"
       },
       "summary": "Classic collect-request deception tricking victim into entering UPI PIN under the belief they will receive money."
     },
     {
-      "id": "scenario_legit_merchant",
-      "title": "Legitimate Local Grocery Purchase",
-      "type": "legitimate_transaction",
-      "severity": "SAFE",
+      "id": "scenario_bank_kyc_small_pay",
+      "title": "🏦 Bank KYC / ₹2 Verification Trap",
+      "category": "Credential/OTP theft attempt",
       "data": {
-        "message": "Your bill at Fresh Daily Supermart is Rs 340. Thank you for shopping with us.",
+        "message": "Your SBI NetBanking profile is suspended due to pending KYC update. Pay nominal verification fee of Rs 2 immediately to reactivate your account.",
+        "url": "http://sbi-kyc-verify-portal.top/auth",
+        "upi_id": "sbi.kyc.desk@ybl",
+        "amount": "2",
+        "payment_reason": "Account Reactivation Verification"
+      },
+      "summary": "Coerces user to pay a small ₹2 verification fee on a spoofed portal to steal credentials and authorize mandates."
+    },
+    {
+      "id": "scenario_job_task_scam",
+      "title": "💼 Work From Home / YouTube Rating Task",
+      "category": "Job/task scam",
+      "data": {
+        "message": "Part-time job offer! Earn Rs 3000 to 5000 daily from home just by liking YouTube videos. Deposit Rs 1000 prepaid registration charge to activate your daily payout account.",
+        "url": "https://bit.ly/earn-daily-tasks-2026",
+        "upi_id": "globaltask.payouts@okaxis",
+        "amount": "1000",
+        "payment_reason": "Prepaid Task Registration"
+      },
+      "summary": "Promises guaranteed daily income for trivial online tasks, requesting an upfront prepaid deposit."
+    },
+    {
+      "id": "scenario_legit_merchant",
+      "title": "🛒 Legitimate Local Grocery Purchase",
+      "category": "Legitimate / Low Suspicion",
+      "data": {
+        "message": "Your bill at Fresh Daily Supermart is Rs 340. Thank you for shopping with us. Invoice has been saved to your account.",
         "url": "https://freshdailygrocers.com/receipt/4921",
         "upi_id": "freshdaily.store@okhdfcbank",
-        "claimed_amount": "₹ 340"
+        "amount": "340",
+        "payment_reason": "Grocery Purchase"
       },
-      "summary": "Normal merchant payment pattern with legitimate verified handle and no coercive cues."
+      "summary": "Normal merchant payment pattern with legitimate verified handle, HTTPS receipt, and no coercive cues."
     }
   ]
 }

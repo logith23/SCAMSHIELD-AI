@@ -217,6 +217,18 @@
             </div>
           </div>
 
+          <!-- Payment Reason Input -->
+          <div class="input-group" id="group-reason">
+            <label class="input-label" for="input-reason">
+              <span>Payment Reason / Context</span>
+              <span class="demo-highlight" style="font-size: 0.75rem;">Contextual Intent</span>
+            </label>
+            <input type="text" id="input-reason" class="input-field" placeholder="e.g. Electricity Bill Payment, Prize Claim, Verification" value="Electricity Bill Payment">
+          </div>
+
+          <!-- Feedback alert message for validation -->
+          <div id="scan-feedback-msg" style="display: none; padding: 0.6rem 0.9rem; border-radius: var(--radius-md); font-size: 0.8rem; margin-bottom: 0.75rem; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5;"></div>
+
           <!-- Action Buttons -->
           <div class="action-row">
             <button class="btn-secondary" id="btn-reset" type="button">
@@ -226,12 +238,12 @@
               </svg>
               Clear Fields
             </button>
-            <button class="btn-primary" id="btn-run-scan" type="button">
+            <button class="btn-primary" id="btn-run-scan" data-action="analyze" type="button">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"/>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
-              <span>Run Pre-Payment Scan</span>
+              <span>Analyze</span>
             </button>
           </div>
         </div>
@@ -270,41 +282,76 @@
             </div>
 
             <div id="risk-verdict-label" class="risk-verdict-badge verdict-high">CRITICAL RISK</div>
-            <p id="risk-verdict-desc" class="risk-description">
+            <div id="scam-type-badge" class="badge" style="margin-top: 0.5rem; font-size: 0.8rem; background: rgba(56, 189, 248, 0.15); border: 1px solid var(--border-active); color: var(--accent-cyan);">Bank/account impersonation</div>
+
+            <!-- Components Analyzed Tags -->
+            <div id="components-analyzed-container" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem; justify-content: center;">
+              <span class="badge" style="background: rgba(255,255,255,0.06); color: var(--text-muted);">💬 Message Content</span>
+              <span class="badge" style="background: rgba(255,255,255,0.06); color: var(--text-muted);">🔗 URL / Domain Link</span>
+              <span class="badge" style="background: rgba(255,255,255,0.06); color: var(--text-muted);">💳 UPI Identifier</span>
+            </div>
+
+            <p id="risk-verdict-desc" class="risk-description" style="margin-top: 0.75rem;">
               High probability of psychological manipulation and deceptive payment intent detected.
             </p>
           </div>
 
           <!-- "Why is this suspicious?" Signals Section -->
           <div>
-            <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.75rem;">
-              Why Was This Flagged?
+            <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem;">
+              Why is this suspicious?
             </h3>
+            <p id="why-flagged-text" style="color: var(--text-main); font-size: 0.875rem; line-height: 1.5; margin-bottom: 0.75rem; background: rgba(13, 21, 39, 0.6); padding: 0.75rem 1rem; border-radius: var(--radius-md); border-left: 3px solid var(--status-danger);">
+              The message pressures the recipient by combining immediate time urgency with coercive fear tactics, threatening service cutoff. The payment identifier incorporates official keywords on a retail handle, and the embedded link routes to an untrusted domain.
+            </p>
             <div class="findings-container" id="findings-container">
               <div class="finding-card">
                 <div class="finding-icon">⚠️</div>
-                <div>
-                  <div class="finding-title">Artificial Urgency & Fear Coercion</div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="finding-title">Artificial Urgency & Fear Coercion</div>
+                    <span class="badge badge-danger">+18 pts</span>
+                  </div>
                   <div class="finding-detail">Threatens immediate power disconnection within hours to panic recipient into skipping verification.</div>
                 </div>
               </div>
 
               <div class="finding-card">
                 <div class="finding-icon">🌐</div>
-                <div>
-                  <div class="finding-title">Untrusted Generic TLD (.xyz)</div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="finding-title">Untrusted Generic TLD (.xyz)</div>
+                    <span class="badge badge-danger">+20 pts</span>
+                  </div>
                   <div class="finding-detail">Domain "quick-power-bill-pay.xyz" is unverified and masquerades as an official government utility.</div>
                 </div>
               </div>
 
               <div class="finding-card">
                 <div class="finding-icon">💳</div>
-                <div>
-                  <div class="finding-title">Personal VPA Impersonation</div>
+                <div style="flex: 1;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="finding-title">Personal VPA Impersonation</div>
+                    <span class="badge badge-danger">+20 pts</span>
+                  </div>
                   <div class="finding-detail">Handle "discom.verify92@okaxis" routes funds to an individual account, not an authorized utility merchant.</div>
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- Recommended Action Section -->
+          <div style="margin-top: 1.25rem;">
+            <h3 style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem;">
+              Recommended Action
+            </h3>
+            <div id="recommended-action-box" style="padding: 0.75rem 1rem; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-md); color: #d1fae5; font-size: 0.85rem; line-height: 1.5;">
+              Do NOT pay through the provided link or handle. Contact the official electricity provider directly using the phone number printed on your physical bill.
+            </div>
+          </div>
+
+          <div id="disclaimer-text" style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-dim); text-align: center;">
+            🛡️ AI-assisted risk assessment based on behavioral signals and local heuristic rules. Not a certified bank verification.
           </div>
 
         </div>
